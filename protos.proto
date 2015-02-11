@@ -1,0 +1,25 @@
+package quiz;
+
+message QuizProto {
+  optional string name = 1;
+
+  message QuizQuestionProto {
+    required string question = 1;
+
+    enum QuestionType {
+        MULTIPLE_CHOICE = 1;
+        FREE_RESPONSE = 2;
+    }
+
+    optional QuestionType type = 2 [default = MULTIPLE_CHOICE];
+
+    message QuizAnswerProto {
+        required string answer = 1;
+        required bool is_correct = 2;
+    }
+
+    repeated QuizAnswerProto answer = 3;
+  }
+
+  repeated QuizQuestionProto question = 2;
+}
